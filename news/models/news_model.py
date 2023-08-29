@@ -5,7 +5,7 @@ from datetime import datetime
 
 def validate_title(value):
     if len(value.split()) < 2:
-        raise ValidationError(("'O título deve conter pelo menos 2 palavras."))
+        raise ValidationError(("O título deve conter pelo menos 2 palavras."))
 
 
 def validate_date_format(value):
