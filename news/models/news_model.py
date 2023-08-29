@@ -4,16 +4,14 @@ from news.models.category_model import Categories
 from django.core.exceptions import ValidationError
 
 
-def validate(value):
-    words = len(value.split())
-
-    if words < 2:
-        raise ValidationError("O título deve conter pelo menos 2 caracteres.")
+def validate_title(value):
+    if len(value.split()) < 2:
+        raise ValidationError(_("O título deve conter mais de uma palavra."))
 
 
 class News(models.Model):
     title = models.CharField(
-        max_length=200, null=False, validators=[validate]
+        max_length=200, null=False, validators=[validate_title]
     )
     content = models.TextField(null=False)
     author = models.ForeignKey(Users, on_delete=models.CASCADE)
