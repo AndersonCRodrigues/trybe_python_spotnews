@@ -12,7 +12,7 @@
 
 {% block content %}
   <div class="news-container">
-    {% for news in news %}
+    {% for news in news_list %}
       <div class="news-card">
         <a href="{% url 'news-details-page' id=news.id %}">
           <h2 class="news-title">{{ news.title }}</h2>

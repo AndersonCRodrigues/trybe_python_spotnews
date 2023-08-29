@@ -5,6 +5,5 @@ from news.models import News
 
 
 def home(request):
-    news = News.objects.all()
-    context = {"news": news}
-    return render(request, "home.html", context)
+    news_list = News.objects.all()
+    return render(request, 'home.html', {'news_list': news_list})
