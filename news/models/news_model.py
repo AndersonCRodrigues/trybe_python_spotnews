@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 
 def validate_title(value):
     if len(value.split()) < 2:
-        raise ValidationError(_("O título deve conter mais de uma palavra."))
+        raise ValidationError(("O título deve conter mais de uma palavra."))
 
 
 class News(models.Model):
