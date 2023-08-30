@@ -1,25 +1,27 @@
-{% extends 'base.html' %}
-
 {% load static %}
 
-{% block title %}
-  Página Inicial
-{% endblock %}
-
-{% block css %}
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-{% endblock %}
-
-{% block content %}
-  <div class="news-container">
-    {% for news in news_list %}
-      <div class="news-card">
-        <a href="{% url 'news-details-page' id=news.id %}">
-          <h2 class="news-title">{{ news.title }}</h2>
-        </a>
-        <span class="news-date">{{ news.created_at|date:"d/m/Y" }}</span>
-        <img src="{% static news.image.url %}" alt="{{ news.title }}" />
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <ul class="header-links">
+            <li><a href="{% url 'home-page' %}">Home</a></li>
+        </ul>
+    </header>
+    {% for new in news %}
+    <div class="news-card">
+        <h2 class="news-title"><a href="{% url 'news-details-page' new.id %}">{{ new.title }}</a></h2>
+        <span class="news-date">{{ new.created_at|date:"d/m/Y" }}</span>
+        {% if news.image %}
+        <img src="/static{{ news.image.url }}" alt="{{ new.title }}">
+        {% endif %}
+    </div>
     {% endfor %}
-  </div>
-{% endblock %}
+</body>
+</html>
